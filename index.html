@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>"مرحبا سيدرا 🤍.. "</title>
+    <meta name="description" content="رسالة" />
+    <meta name="theme-color" content="#1a0a0f" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --background: hsl(330, 60%, 8%);
+            --foreground: hsl(340, 30%, 95%);
+            --rose-pink: hsl(340, 80%, 65%);
+            --rose-deep: hsl(340, 70%, 45%);
+            --rose-glow: hsl(340, 90%, 70%);
+            --blush: hsl(350, 70%, 80%);
+            --wine-dark: hsl(330, 60%, 12%);
+            --gold-shimmer: hsl(40, 70%, 70%);
+            --sparkle: hsl(350, 80%, 85%);
+        }
+
+        html, body {
+            overscroll-behavior: none;
+            -webkit-overflow-scrolling: touch;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            background: 
+                radial-gradient(ellipse at 30% 20%, hsl(340, 60%, 20%, 0.5) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, hsl(350, 70%, 25%, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, hsl(330, 50%, 15%) 0%, transparent 60%),
+                linear-gradient(180deg, hsl(330, 60%, 6%) 0%, hsl(340, 55%, 14%) 50%, hsl(330, 60%, 6%) 100%);
+            color: var(--foreground);
+        }
+
+        /* FALLING PETALS */
+        .petal {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            animation: petalDrift var(--petal-duration, 12s) linear infinite;
+            animation-delay: var(--petal-delay, 0s);
+        }
+
+        .petal svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes petalDrift {
+            0% {
+                transform: translateY(-60px) translateX(0) rotate(0deg) scale(var(--petal-scale, 1));
+                opacity: 0;
+            }
+            10% {
+                opacity: var(--petal-opacity, 0.8);
+            }
+            90% {
+                opacity: var(--petal-opacity, 0.8);
+            }
+            100% {
+                transform: translateY(100vh) translateX(var(--petal-drift, 30px)) rotate(720deg) scale(var(--petal-scale, 1));
+                opacity: 0;
+            }
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* TITLE */
+        .title {
+            font-family: 'Amiri', serif;
+            font-size: clamp(1.8rem, 8vw, 2.5rem);
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(
+                120deg,
+                var(--blush) 0%,
+                var(--gold-shimmer) 25%,
+                var(--blush) 50%,
+                var(--gold-shimmer) 75%,
+                var(--blush) 100%
+            );
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmerFlow 4s ease-in-out infinite;
+        }
+
+        @keyframes shimmerFlow {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+        }
+
+        /* MESSAGE BOX */
+        .message-box {
+            width: 100%;
+            min-height: 140px;
+            padding: 28px 24px;
+            border-radius: 20px;
+            background: hsl(330, 60%, 12%, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid hsl(340, 80%, 65%, 0.2);
+            box-shadow: 
+                0 20px 60px hsl(330, 60%, 8%, 0.5),
+                0 0 40px hsl(340, 80%, 65%, 0.1),
+                inset 0 1px 0 hsl(350, 70%, 80%, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .message-text {
+            font-size: clamp(1.1rem, 5vw, 1.4rem);
+            line-height: 2;
+            text-align: center;
+            color: var(--foreground);
+        }
+
+        .message-text .word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(8px);
+            animation: wordAppear 0.6s ease forwards;
+        }
+
+        @keyframes wordAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* GLOW TEXT */
+        .glow-text {
+            color: var(--blush);
+            text-shadow: 
+                0 0 10px hsl(340, 80%, 65%, 0.8),
+                0 0 30px hsl(340, 70%, 45%, 0.6),
+                0 0 50px hsl(340, 80%, 65%, 0.4);
+            animation: glowPulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                text-shadow: 
+                    0 0 10px hsl(340, 80%, 65%, 0.8),
+                    0 0 30px hsl(340, 70%, 45%, 0.6),
+                    0 0 50px hsl(340, 80%, 65%, 0.4);
+            }
+            50% {
+                text-shadow: 
+                    0 0 20px var(--rose-pink),
+                    0 0 50px hsl(340, 70%, 45%, 0.8),
+                    0 0 80px hsl(340, 80%, 65%, 0.6);
+            }
+        }
+
+        /* PROGRESS DOTS */
+        .progress {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: hsl(330, 40%, 22%);
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--rose-pink);
+            box-shadow: 0 0 10px var(--rose-glow);
+        }
+
+        /* BUTTON */
+        .btn {
+            width: 100%;
+            max-width: 280px;
+            padding: 18px 32px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: white;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            background: linear-gradient(135deg, var(--rose-deep) 0%, var(--rose-pink) 50%, var(--rose-deep) 100%);
+            background-size: 200% 200%;
+            box-shadow: 
+                0 8px 30px hsl(340, 80%, 65%, 0.3),
+                0 2px 10px hsl(330, 60%, 8%, 0.5),
+                inset 0 1px 0 hsl(350, 70%, 80%, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn:hover {
+            background-position: 100% 100%;
+            box-shadow: 
+                0 12px 40px hsl(340, 80%, 65%, 0.4),
+                0 4px 15px hsl(330, 60%, 8%, 0.6),
+                inset 0 1px 0 hsl(350, 70%, 80%, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            animation: btnPulse 0.6s ease;
+        }
+
+        @keyframes btnPulse {
+            0% { box-shadow: 0 0 0 0 hsl(340, 80%, 65%, 0.7); }
+            50% { box-shadow: 0 0 0 15px hsl(340, 80%, 65%, 0); }
+            100% { box-shadow: 0 0 0 0 hsl(340, 80%, 65%, 0); }
+        }
+
+        /* ROSE EMOJI */
+        .rose-emoji {
+            font-size: clamp(3rem, 12vw, 4rem);
+            display: none;
+            animation: rosePop 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+
+        .rose-emoji.visible {
+            display: block;
+        }
+
+        @keyframes rosePop {
+            0% {
+                transform: scale(0) rotate(-20deg);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2) rotate(10deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        /* SPARKLES */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 100;
+            animation: sparkleFall 3s ease-out forwards;
+        }
+
+        @keyframes sparkleFall {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="petals-container"></div>
+    
+    <div class="container">
+        <h1 class="title">مرحبا سيدرا 🤍.. </h1>
+        
+        <div class="message-box">
+            <p class="message-text" id="messageText">اضغطي لتشوفي الكلام 💗</p>
+        </div>
+        
+        <div class="progress" id="progress"></div>
+        
+        <button class="btn" id="nextBtn">اضغطي هنا 💕</button>
+        
+        <div class="rose-emoji" id="rose">🌹</div>
+    </div>
+
+    <script>
+        const messages = [
+            "بدايةً يا نور عيوني بحبّك كثير .. مش شوي كثير ، كمّلنا تقريبا النص سنة مع بعض وحندخل بالسنة الجديدة ، وكل عام وأنتِ اغلى إنسانة ع قلبي وأحلى حدا دخل عالمي..",
+            "ثانيا يا عمري بخصوص اليوم، انا عارف انك متضايقة وعندك اشياء وغير وجع بطنك والنكد والإمتحانات .. لكن والله كله انعكاس شوقي إلك وكم بحبّك وبحب وقتي معك.. تزعليش مني عالنكد يا روحي ، بحبّك كثير وبعتذر سوستي 🤍.",        
+            "ولكن دايما دعوة الام مستجابة، دايما كانت ادعيلي انه الله يرزقني من حيث لا احتسب وبالنهاية ربنا رزقني حدا زيك الدنيا كلها ما بتعوّضه ولا كنت بتوقع اكون بحبه ويحبني وبحمد ربنا عليكِ كل يوم عشان ما يحرمني منك بلحظة.",
+
+            "حتكون أوّل سنة بحس عنجد فيها شخص بخاف عليه يروح ،شكرًا يا كتكوتتي ع الايام اللي قضيناها مع بعض ونوّرتي فيها عتمتي وحياتي، كنتي وحتضلي مكاني الآمن وروحي، يارب يخليلي ضحكتك اللي بتعديني وما بتتركني الا اضحك معها ، ولا يحرمني منها وتضلها شمس بعالمي."
+
+        ];
+
+        const finalMessage = "اللي حكيته كله من قبل يا كتكوتتي شوي من اللي بقلبي إلك والله ، نفسي ادخلك عقلبي وتشوفي كم انتِ غالية علي ومكانتك بقلبي ووُجداني مش زي اي انسان وما ببدّلك بحدا لو شو ما صار ، يارب يا روحي يفرّحني فيكِ وبمعدلك ويدخلك جامعتي 🤍، بالنهاية كله هاد ما بوصف جزء بسيط لجمالك ولا محبتي إلك ، انتِ اوصافك بوصفهاش كلام ولا حروف ولا غيره .. اللّٰه وحده بعلم كم بحبّك 🤍.";
+
+        let currentIndex = 0;
+        const messageText = document.getElementById('messageText');
+        const progress = document.getElementById('progress');
+        const nextBtn = document.getElementById('nextBtn');
+        const rose = document.getElementById('rose');
+
+        // Create progress dots
+        function createProgressDots() {
+            for (let i = 0; i <= messages.length; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                progress.appendChild(dot);
+            }
+        }
+
+        // Update progress dots
+        function updateProgress(index) {
+            const dots = progress.querySelectorAll('.dot');
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i <= index);
+            });
+        }
+
+        // Type message word by word
+        function typeMessage(text, isGlow = false) {
+            messageText.innerHTML = '';
+            const words = text.split(' ');
+            
+            words.forEach((word, i) => {
+                const span = document.createElement('span');
+                span.className = 'word' + (isGlow ? ' glow-text' : '');
+                span.textContent = word + '\u00A0';
+                span.style.animationDelay = `${i * 0.35}s`;
+                messageText.appendChild(span);
+            });
+        }
+
+        // Create falling petals
+        function createPetals() {
+            const container = document.getElementById('petals-container');
+            const petalColors = [
+                ['#e75480', '#c41e3a'],
+                ['#ff69b4', '#db2f66'],
+                ['#f8b4c4', '#e8849a'],
+                ['#d4456b', '#a0304e']
+            ];
+
+            for (let i = 0; i < 40; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                
+                const size = 12 + Math.random() * 16;
+                const colors = petalColors[Math.floor(Math.random() * petalColors.length)];
+                
+                petal.style.cssText = `
+                    left: ${Math.random() * 100}%;
+                    width: ${size}px;
+                    height: ${size}px;
+                    --petal-duration: ${10 + Math.random() * 8}s;
+                    --petal-delay: ${Math.random() * 10}s;
+                    --petal-drift: ${-40 + Math.random() * 80}px;
+                    --petal-scale: ${0.6 + Math.random() * 0.6};
+                    --petal-opacity: ${0.4 + Math.random() * 0.4};
+                `;
+                
+                petal.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2C12 2 8 6 8 12C8 18 12 22 12 22C12 22 16 18 16 12C16 6 12 2 12 2Z" 
+                              fill="url(#grad${i})" opacity="0.9"/>
+                        <defs>
+                            <linearGradient id="grad${i}" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:${colors[0]}"/>
+                                <stop offset="100%" style="stop-color:${colors[1]}"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                `;
+                
+                container.appendChild(petal);
+            }
+        }
+
+        // Launch sparkles
+        function launchSparkles() {
+            for (let i = 0; i < 60; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    
+                    const size = 4 + Math.random() * 6;
+                    const hue = 340 + Math.random() * 30;
+                    
+                    sparkle.style.cssText = `
+                        left: ${Math.random() * 100}%;
+                        top: -10px;
+                        width: ${size}px;
+                        height: ${size}px;
+                        background: radial-gradient(circle, hsl(${hue}, 80%, 75%), hsl(${hue}, 70%, 55%));
+                        border-radius: 50%;
+                        box-shadow: 0 0 ${size}px hsl(${hue}, 80%, 65%);
+                    `;
+                    
+                    document.body.appendChild(sparkle);
+                    
+                    setTimeout(() => sparkle.remove(), 3000);
+                }, i * 30);
+            }
+        }
+
+        // Next message handler
+        function nextMessage() {
+            if (currentIndex < messages.length) {
+                typeMessage(messages[currentIndex]);
+                updateProgress(currentIndex);
+                currentIndex++;
+                
+                if (currentIndex === messages.length) {
+                    nextBtn.textContent = 'الرسالة الأخيرة 💕';
+                }
+            } else {
+                typeMessage(finalMessage, true);
+                updateProgress(messages.length);
+                nextBtn.style.display = 'none';
+                rose.classList.add('visible');
+                launchSparkles();
+            }
+        }
+
+        // Initialize
+        createProgressDots();
+        createPetals();
+        nextBtn.addEventListener('click', nextMessage);
+    </script>
+</body>
+</html>
